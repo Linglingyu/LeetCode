@@ -66,11 +66,38 @@ int lcs_memory(string s1, string s2, int m, int n, int **memop){
 
 }
 
+//不用递归的方法
+int minDistance_noiter(string s1, string s2){
+	if (s1.empty() || s2.empty())return s1.size() + s2.size();
+	int **dp = new int*[s1.size() + 1];
+	for (int i = 0; i < s1.size()+1; i++){
+		dp[i] = new int[s2.size() + 1];
+	}
+	//memset(dp, 0, (s1.size() + 1)*(s2.size() + 1));
+	for (int i = 0; i <= s1.size(); i++){
+		for (int j = 0; j <= s2.size(); j++){
+			dp[i][j] = 0;
+		}
+	}
+
+	for (int i = 1; i < s1.size()+1; i++){
+		for (int j = 1; j < s2.size() + 1; j++){
+			if (s1[i-1] == s2[j-1]){
+				dp[i][j] = 1 + dp[i - 1][j - 1];
+			}
+			else{
+				dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+			}
+		}
+	}
+	return s1.size()+s2.size()-2*dp[s1.size()][s2.size()];
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	string word1 = "a";
 	string word2 = "a";
-	int res = minDistance_memory(word1, word2);
+	int res = minDistance_noiter(word1, word2);
 	cout << res << endl;
 	system("pause");
 	return 0;
