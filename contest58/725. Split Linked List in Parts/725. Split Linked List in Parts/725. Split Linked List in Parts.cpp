@@ -38,6 +38,7 @@ vector<ListNode*> splitListToParts(ListNode* root, int k) {
 				res.push_back(temp);
 			}
 		}
+		return res;
 	}
 
 

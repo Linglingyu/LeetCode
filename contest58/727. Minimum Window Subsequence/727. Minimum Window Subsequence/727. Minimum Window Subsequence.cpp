@@ -45,7 +45,7 @@ string lcs(string s1, string s2){
 		}
 	}
 	int n = 0;
-	for (int n = 0; n < s1.size(); n++){
+	for (n = 0; n < s1.size(); n++){
 		if (dp[n][s2.size()] == s2.size())break;
 	}
 	int len = 0;
