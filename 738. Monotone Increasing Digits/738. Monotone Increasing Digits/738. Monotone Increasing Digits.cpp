@@ -37,8 +37,11 @@ string int2str(int N){
 	}
 	return res;
 }
-//
+
+//这是从高位开始改，然后再回到高位的做法
+//也可以直接从低位开始改
 int monotoneIncreasingDigits(int N) {
+	string n = to_string(N);//int转string
 	vector<int>str;
 	int res = N;
 	while (res){
